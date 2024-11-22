@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <script>
+        // // URL of the binary file
+        // const url = './test';
+        // // Fetch the binary file
+        // fetch(url)
+        //   .then(response => {
+        //     if (!response.ok) {
+        //       throw new Error('Network response was not ok');
+        //     } return response.arrayBuffer();
+        //   })
+        //   .then(arrayBuffer => {
+        //     // Convert the ArrayBuffer to a Float32Array
+        //     console.log(arrayBuffer.slice(85));
+        //     const float32Array = new Float64Array(arrayBuffer.slice(199));
+        //     // Log the Float32Array
+        //     console.log('Float32Array:', float32Array);
+        //   })
+        //   .catch(error => {
+        //     console.error('There was a problem with the fetch operation:', error)
+        //   });
+var oReq = new XMLHttpRequest();
+oReq.open("GET", "./test", true);
+oReq.responseType = "arraybuffer";
+
+oReq.onload = function (oEvent) {
+  var arrayBuffer = oReq.response; // 注意：不是 oReq.responseText
+  console.log(arrayBuffer);
+  if (arrayBuffer) {
+    var byteArray = new Float32Array(arrayBuffer);
+    console.log(byteArray);
+  }
+};
+
+oReq.send(null);
+    </script>
+  </body>
+</html>
